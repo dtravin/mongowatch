@@ -71,17 +71,16 @@ int main (int argc, char *argv[])
     while (true) {
 
         if (mongoc_change_stream_next (stream, &doc)) {
+
           /*
             char *as_json = bson_as_relaxed_extended_json (doc, NULL);
             fprintf (stderr, "Got document: %s\n", as_json);
-          bson_free (as_json);
+            bson_free (as_json);
           */
             if (bson_iter_init (&iter, doc) &&
-                    bson_iter_find_descendant (&iter, "documentKey._id", &sub_iter)) {
+                bson_iter_find_descendant (&iter, "documentKey._id", &sub_iter)) {
 
-                oid = bson_iter_oid (&sub_iter);
-                bson_oid_to_string (oid, str);
-                printf("%s\t", str);
+                printf("%s\t", bson_iter_utf8 (&sub_iter, NULL));
 
             }
 

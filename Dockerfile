@@ -8,7 +8,7 @@ WORKDIR /usr/src
 RUN  wget https://github.com/mongodb/mongo-c-driver/releases/download/1.9.3/mongo-c-driver-1.9.3.tar.gz && \
      tar xzf mongo-c-driver-1.9.3.tar.gz && \
      cd mongo-c-driver-1.9.3 && \
-     ./configure --disable-automatic-init-and-cleanup && \
+     ./configure && \
      make && \
      make install
 
@@ -21,4 +21,4 @@ RUN  gcc -o mongowatch mongowatch.c $(pkg-config --libs --cflags libmongoc-1.0)
 
 ENV LD_LIBRARY_PATH=/usr/local/lib
 
-CMD [ "./mongowatch", "mongodb://localhost:27017,localhost:27018,localhost:27019/?replicaSet=rs0", "test", "c1"]
+CMD [ "./mongowatch", "mongodb://mongodb:27017,mongodb:27018,mongodb:27019/?replicaSet=rs0", "platform", "payments"]
