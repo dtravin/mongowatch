@@ -1,8 +1,5 @@
 #include <mongoc.h>
-
-#define b64_ntop __b64_ntop
-
-int b64_ntop(unsigned char const *src, size_t srclength, char *target, size_t targsize);
+#include "base64.h"
 
 int main (int argc, char *argv[])
 {
@@ -92,7 +89,7 @@ int main (int argc, char *argv[])
                 b64_len = (key_len / 3 + 1) * 4 + 1;
                 b64 = bson_malloc0 (b64_len);
 
-                b64_ntop (binary, b64_len, b64, b64_len);
+                a_b64_ntop (binary, b64_len, b64, b64_len);
                 printf("%s\n", b64);
                 fflush(stdout);
             }

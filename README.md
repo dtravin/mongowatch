@@ -12,7 +12,7 @@ $ sudo make install
 - Run mongo replicaset
 
 ### Build 
-`gcc -o mongowatch mongowatch.c $(pkg-config --libs --cflags libmongoc-1.0)`
+`gcc -o mongowatch base64.c mongowatch.c $(pkg-config --libs --cflags libmongoc-1.0)`
 
 ### Test
 - Terminal 1 
